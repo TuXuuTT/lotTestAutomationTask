@@ -1,7 +1,7 @@
 package com.automation.web;
 
 import com.automation.BaseTest;
-import com.automation.pageobjects.BaseAppLoginPage;
+import com.automation.pageobjects.StartPage;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Features;
@@ -11,15 +11,16 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TestLeadsCustomFields extends BaseTest {
 
-    BaseAppLoginPage settingsPage;
+    StartPage startPage;
     String randomStr;
 
     @Override
     @BeforeClass(alwaysRun = true)
     public void beforeClass() {
         super.beforeClass();
-        settingsPage = open(BaseAppLoginPage.getPageURL(), BaseAppLoginPage.class)
-                .loginAsAdmin();
+        startPage = open(StartPage.getAppURL(), StartPage.class)
+                .checkToCheck();
+
     }
 
     @Features("Lead custom fields functionality")

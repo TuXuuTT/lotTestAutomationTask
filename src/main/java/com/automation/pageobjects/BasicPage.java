@@ -19,7 +19,7 @@ public abstract class BasicPage {
         wd = WebDriverRunner.getWebDriver();
     }
 
-    public static String getPageURL() {
+    public static String getAppURL() {
         return EnvironmentConfigurator.getInstance().getAppUrl();
     }
 
