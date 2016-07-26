@@ -10,6 +10,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public abstract class BasicPage {
     protected final Logger LOGGER = LogManager.getLogger(this);
@@ -44,5 +48,16 @@ public abstract class BasicPage {
 
     protected Object executeJS(final String script, final Object... params) {
         return ((JavascriptExecutor) wd).executeScript(script, params);
+    }
+
+
+    protected Map<String, Object> createMapFromTwoLists(List<String> inputKeysList, List inputValuesLists) {
+        Map<String, Object> result = new HashMap<>();
+        if (inputKeysList.size() == inputValuesLists.size()) {
+            for (int i = 0; i < inputKeysList.size(); i++) {
+                result.put(inputKeysList.get(i), inputValuesLists.get(i));
+            }
+        } else throw new IllegalArgumentException("Cannot map lists with different sizes");
+        return result;
     }
 }

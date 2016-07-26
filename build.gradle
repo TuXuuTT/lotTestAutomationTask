@@ -11,7 +11,7 @@ def javaMailVersion = '1.5.5'
 
 def seleniumVersion = '2.53.1'
 def selenideVersion = '3.7'
-def htmlelementsVersion = '1.17'
+//def htmlelementsVersion = '1.17'
 
 def grailsCoreVersion = '3.0.12'
 
@@ -46,7 +46,9 @@ dependencies {
 
     compile "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
     compile "com.codeborne:selenide:${selenideVersion}"
-    compile "ru.yandex.qatools.htmlelements:htmlelements-java:${htmlelementsVersion}"
+//    compile "ru.yandex.qatools.htmlelements:htmlelements-java:${htmlelementsVersion}"
+    compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.4'
+    compile group: 'info.cukes', name: 'cucumber-testng', version: '1.2.4'
 
     compile "org.grails:grails-core:${grailsCoreVersion}"
 
@@ -107,4 +109,8 @@ def loadConfiguration() {
     //magic that adds new properties w/o overriding existent ones
     systemPropertySet = System.getProperties() + configProperties.toProperties()
     System.setProperties(systemPropertySet)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.14.1'
 }
