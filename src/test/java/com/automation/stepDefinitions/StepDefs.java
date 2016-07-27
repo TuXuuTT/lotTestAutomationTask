@@ -25,11 +25,6 @@ public class StepDefs {
         lotStartPage = open(LotStartPage.getAppURL(), LotStartPage.class);
     }
 
-    @When("^fill destination form$")
-    public void fillDestinationForm() {
-        lotStartPage.selectDestination("Kiev");
-    }
-
     @And("^click search$")
     public void clickSearch() {
         flightSearchResultsPage = lotStartPage.clickSearch();
@@ -42,14 +37,12 @@ public class StepDefs {
 
     @When("^fill departure form with city name (.*)$")
     public void fillDepartureFormWithCityName(String cityName) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        lotStartPage.selectDeparture(cityName);
     }
 
     @And("^fill destination form with city name (.*)$")
     public void fillDestinationFormWithCityName(String cityName) throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        lotStartPage.selectDestination(cityName);
     }
 
     @And("^select random departure date$")

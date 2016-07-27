@@ -20,4 +20,8 @@ public class LotStartPage extends BasicPage {
         return page(FlightSearchResultsPage.class);
     }
 
+    public LotStartPage selectDeparture(String cityName) {
+        bookerBlock.selectDeparture(cityName);
+        return page(this);
+    }
 }

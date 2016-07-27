@@ -5,7 +5,7 @@ Feature: Search for flight from start page
     Given Lot start page is opened
 
   Scenario: Search with default proposed values to verify Search button is working
-    When fill destination form
+    When fill destination form with city name Kiev
     And click search
     Then search results displayed
 

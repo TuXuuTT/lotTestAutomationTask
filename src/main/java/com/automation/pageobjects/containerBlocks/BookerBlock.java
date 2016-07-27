@@ -24,6 +24,8 @@ public class BookerBlock extends ElementsContainer {
 
     private By liAirportSelector = By.cssSelector(".airport-selector-airport");
 
+    private By datePickerRightNumber = By.cssSelector(".ui-datepicker-group-last .ui-datepicker-calendar a");
+
     private By btnSearch = By.cssSelector("#booker-search");
 
     public void clickSearch() {
@@ -35,4 +37,20 @@ public class BookerBlock extends ElementsContainer {
         getSelf().$(btnArrivalCityBox).$("input").val(cityName).pressEnter();
         getSelf().$(numOfAdults).click();
     }
+
+    public void selectDeparture(String cityName) {
+        getSelf().$(btnDepartureCityBox).click();
+        getSelf().$(btnDepartureCityBox).$("input").val(cityName).pressEnter();
+        getSelf().$(numOfAdults).click();
+
+    }
+
+    public static class DatePickerBlock_StaticNestedClass {
+
+        public void selectDateFromRightSection(){
+//            getSelf().$
+        }
+
+    }
+
 }
