@@ -6,7 +6,7 @@ import cucumber.api.SnippetType;
 
 @CucumberOptions(features = "src/test/resources/features/SearchFlight.feature",
         glue = "com.automation.stepDefinitions",
-        plugin = {"html:build/cucumber-report", "pretty"},
+        plugin = {"html:build/reports/cucumber-report", "pretty"},
         strict = true,
         snippets = SnippetType.CAMELCASE)
 public class TestSearchFlightRunner extends BasicTest {

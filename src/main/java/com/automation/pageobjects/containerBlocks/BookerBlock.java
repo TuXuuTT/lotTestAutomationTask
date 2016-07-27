@@ -3,6 +3,8 @@ package com.automation.pageobjects.containerBlocks;
 import com.codeborne.selenide.ElementsContainer;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class BookerBlock extends ElementsContainer {
     private By btnTicketTypeReturn = By.cssSelector("a[data-ticket-type=\"RETURN\"]");
     private By btnTicketTypeSingle = By.cssSelector("a[data-ticket-type=\"SINGLE\"]");
@@ -20,9 +22,17 @@ public class BookerBlock extends ElementsContainer {
     private By btnTicketClassBox = By.cssSelector("#ticket-class");
     private By inputPromoCode = By.cssSelector("#promoCode");
 
+    private By liAirportSelector = By.cssSelector(".airport-selector-airport");
+
     private By btnSearch = By.cssSelector("#booker-search");
 
     public void clickSearch() {
         getSelf().$(btnSearch).click();
+    }
+
+    public void selectDestination(String cityName){
+        getSelf().$(btnArrivalCityBox).click();
+        getSelf().$(btnArrivalCityBox).$("input").val(cityName).pressEnter();
+        getSelf().$(numOfAdults).click();
     }
 }
