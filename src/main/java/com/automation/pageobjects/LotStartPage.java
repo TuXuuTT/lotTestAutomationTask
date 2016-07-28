@@ -10,11 +10,6 @@ public class LotStartPage extends BasicPage {
     @FindBy(css = "#bookerContainer")
     private BookerBlock bookerBlock;
 
-    public LotStartPage selectDestination(String cityName) {
-        bookerBlock.selectDestination(cityName);
-        return page(this);
-    }
-
     public FlightSearchResultsPage clickSearch() {
         bookerBlock.clickSearch();
         return page(FlightSearchResultsPage.class);
@@ -22,6 +17,11 @@ public class LotStartPage extends BasicPage {
 
     public LotStartPage selectDeparture(String cityName) {
         bookerBlock.selectDeparture(cityName);
+        return page(this);
+    }
+
+    public LotStartPage selectDestination(String cityName) {
+        bookerBlock.selectDestination(cityName);
         return page(this);
     }
 

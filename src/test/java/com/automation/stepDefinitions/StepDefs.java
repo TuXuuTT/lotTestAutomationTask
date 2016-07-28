@@ -35,7 +35,7 @@ public class StepDefs {
 
     @Then("^search results page displayed$")
     public void searchResultsPageDisplayed() {
-        flightSearchResultsPage.checkSearchResultsPageLayout();
+        flightSearchResultsPage.verifySearchResultsPageLayout();
     }
 
     @When("^fill departure form with city name (.*)$")
@@ -60,9 +60,9 @@ public class StepDefs {
 
     @And("^search results displayed for specified (.*) and (.*) also if round trip is (.*)$")
     public void searchResultsDisplayedForSpecifiedDepartureAndArrival(String departureCity, String arrivalCity, String isItRoundTrip) throws Throwable {
-        boolean roundTrip = Boolean.parseBoolean(isItRoundTrip);
-        flightSearchResultsPage.checkNumberOfFoundRoutes(roundTrip);
-        flightSearchResultsPage.checkDepartureCity(departureCity, roundTrip);
-        flightSearchResultsPage.checkArrivalCity(arrivalCity, roundTrip);
+        boolean isRoundTrip = Boolean.parseBoolean(isItRoundTrip);
+        flightSearchResultsPage.verifyNumberOfFoundRoutes(isRoundTrip);
+        flightSearchResultsPage.verifyDepartureCity(departureCity, isRoundTrip);
+        flightSearchResultsPage.verifyArrivalCity(arrivalCity, isRoundTrip);
     }
 }

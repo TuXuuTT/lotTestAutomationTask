@@ -1,5 +1,5 @@
 Feature: Search for flight from start page
-  Every user, even unregistered should be able to search for flight after providing required details
+  Every user, even unregistered should be able to search for flight after providing required information
 
   Background:
     Given Lot start page is opened

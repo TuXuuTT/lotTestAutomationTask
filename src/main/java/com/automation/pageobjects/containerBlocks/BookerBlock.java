@@ -34,10 +34,6 @@ public class BookerBlock extends ElementsContainer {
         getSelf().$(btnSearch).click();
     }
 
-    public void selectDestination(String cityName) {
-        selectCity(cityName, btnArrivalCityBox);
-    }
-
     private void selectCity(String cityName, By cityBox) {
         getSelf().$(cityBox).click();
         getSelf().$(cityBox).$("input").val(cityName);
@@ -49,6 +45,16 @@ public class BookerBlock extends ElementsContainer {
         selectCity(cityName, btnDepartureCityBox);
     }
 
+    public void selectDestination(String cityName) {
+        selectCity(cityName, btnArrivalCityBox);
+    }
+
+    private void selectDateFromRightPickerSection(int date, By dateBox) {
+        $(dateBox).click();
+        $$(datePickerRightNumber).get(date - 1).click();
+        getSelf().$(bookerBoxTextLabel).click();
+    }
+
     public void selectDepartureDate(int date) {
         selectDateFromRightPickerSection(date, btnDepartureDateBox);
     }
@@ -56,12 +62,6 @@ public class BookerBlock extends ElementsContainer {
     public void selectReturnDate(int date) {
         selectDateFromRightPickerSection(date, btnArrivalDateBox);
 
-    }
-
-    private void selectDateFromRightPickerSection(int date, By dateBox) {
-        $(dateBox).click();
-        $$(datePickerRightNumber).get(date - 1).click();
-        getSelf().$(bookerBoxTextLabel).click();
     }
 
 

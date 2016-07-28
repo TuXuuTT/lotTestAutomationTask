@@ -11,18 +11,18 @@ public class FlightSearchResultsPage extends BasicPage {
     private By flightDirection = By.cssSelector(".flight_direction");
     private By flightDirectionListItem = By.cssSelector(".flight_direction__list__item");
 
-    public void checkSearchResultsPageLayout() {
+    public void verifySearchResultsPageLayout() {
         $(listSearchSteps).shouldBe(Condition.visible);
     }
 
-    public void checkDepartureCity(String departureCity, boolean roundTrip) {
+    public void verifyDepartureCity(String departureCity, boolean roundTrip) {
         $$(flightDirection).get(0).$$(flightDirectionListItem).get(0).shouldHave(Condition.text(departureCity));
         if (roundTrip) {
             $$(flightDirection).get(1).$$(flightDirectionListItem).get(1).shouldHave(Condition.text(departureCity));
         }
     }
 
-    public void checkArrivalCity(String arrivalCity, boolean roundTrip) {
+    public void verifyArrivalCity(String arrivalCity, boolean roundTrip) {
         $$(flightDirection).get(0).$$(flightDirectionListItem).get(1).shouldHave(Condition.text(arrivalCity));
         if (roundTrip) {
             $$(flightDirection).get(1).$$(flightDirectionListItem).get(0).shouldHave(Condition.text(arrivalCity));
@@ -30,7 +30,7 @@ public class FlightSearchResultsPage extends BasicPage {
 
     }
 
-    public void checkNumberOfFoundRoutes(boolean isItRoundTrip) {
+    public void verifyNumberOfFoundRoutes(boolean isItRoundTrip) {
         if (isItRoundTrip) {
             $$(flightDirection).shouldHaveSize(2);
         } else $$(flightDirection).shouldHaveSize(1);
