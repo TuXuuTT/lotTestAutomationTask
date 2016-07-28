@@ -24,4 +24,15 @@ public class LotStartPage extends BasicPage {
         bookerBlock.selectDeparture(cityName);
         return page(this);
     }
+
+    public LotStartPage selectDepartureDate(int date) {
+        bookerBlock.selectDepartureDate(date);
+        return page(this);
+    }
+
+    public LotStartPage selectReturnDate(int date) {
+        bookerBlock.selectReturnDate(date);
+        return page(this);
+
+    }
 }

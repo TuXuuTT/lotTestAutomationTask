@@ -8,6 +8,7 @@ import cucumber.api.SnippetType;
         glue = "com.automation.stepDefinitions",
         plugin = {"html:build/reports/cucumber-report", "pretty"},
         strict = true,
-        snippets = SnippetType.CAMELCASE)
+        snippets = SnippetType.CAMELCASE,
+        tags = {/*"@DEV"*/}) //TODO Remove tags before release, its for dev purposes only
 public class TestSearchFlightRunner extends BasicTest {
 }

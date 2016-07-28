@@ -2,16 +2,19 @@ package com.automation.stepDefinitions;
 
 import com.automation.pageobjects.FlightSearchResultsPage;
 import com.automation.pageobjects.LotStartPage;
-import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import java.util.Random;
+
 import static com.codeborne.selenide.Selenide.open;
 
 public class StepDefs {
+    private int departureDate = (new Random()).ints(1, 6).findFirst().getAsInt();
+    private int returnDate = departureDate * 2;
     private LotStartPage lotStartPage;
     private FlightSearchResultsPage flightSearchResultsPage;
 
@@ -30,8 +33,8 @@ public class StepDefs {
         flightSearchResultsPage = lotStartPage.clickSearch();
     }
 
-    @Then("^search results displayed$")
-    public void searchResultsDisplayed() {
+    @Then("^search results page displayed$")
+    public void searchResultsPageDisplayed() {
         flightSearchResultsPage.checkSearchResultsPageLayout();
     }
 
@@ -45,21 +48,21 @@ public class StepDefs {
         lotStartPage.selectDestination(cityName);
     }
 
-    @And("^select random departure date$")
-    public void selectRandomDepartureDate() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("^select random valid departure date$")
+    public void selectRandomValidDepartureDate() throws Throwable {
+        lotStartPage.selectDepartureDate(departureDate);
     }
 
-    @And("^select random return date$")
-    public void selectRandomReturnDate() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("^select random valid return date$")
+    public void selectRandomValidReturnDate() throws Throwable {
+        lotStartPage.selectReturnDate(returnDate);
     }
 
-    @And("^search results displayed for specified values$")
-    public void searchResultsDisplayedForSpecifiedValues() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("^search results displayed for specified (.*) and (.*) also if round trip is (.*)$")
+    public void searchResultsDisplayedForSpecifiedDepartureAndArrival(String departureCity, String arrivalCity, String isItRoundTrip) throws Throwable {
+        boolean roundTrip = Boolean.parseBoolean(isItRoundTrip);
+        flightSearchResultsPage.checkNumberOfFoundRoutes(roundTrip);
+        flightSearchResultsPage.checkDepartureCity(departureCity, roundTrip);
+        flightSearchResultsPage.checkArrivalCity(arrivalCity, roundTrip);
     }
 }
