@@ -35,4 +35,9 @@ public class LotStartPage extends BasicPage {
         return page(this);
 
     }
+
+    public LotStartPage selectTicketType(boolean isReturn) {
+        bookerBlock.selectTicketType(isReturn);
+        return page(this);
+    }
 }

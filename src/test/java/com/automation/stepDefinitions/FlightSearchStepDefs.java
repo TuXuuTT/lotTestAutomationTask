@@ -2,7 +2,6 @@ package com.automation.stepDefinitions;
 
 import com.automation.pageobjects.FlightSearchResultsPage;
 import com.automation.pageobjects.LotStartPage;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -12,16 +11,16 @@ import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class StepDefs {
-    private int departureDate = (new Random()).ints(1, 6).findFirst().getAsInt();
+public class FlightSearchStepDefs {
+    private int departureDate = (new Random()).ints(1, 10).findFirst().getAsInt();
     private int returnDate = departureDate * 2;
     private LotStartPage lotStartPage;
     private FlightSearchResultsPage flightSearchResultsPage;
 
-    @Before
-    public void beforeScenario() {
-        //Note: hook that can be executed before each scenario and do not conflict with global testNG hooks from Runner and Basic runner class. As well "before" for scenario is specified in the Background section of feature
-    }
+//    Note: hook that can be executed before each scenario and do not conflict with global testNG hooks from Runner and Basic runner class. As well "before" for scenario is specified in the Background section of feature
+//    @Before
+//    public void beforeScenario() {
+//    }
 
     @Given("^Lot start page is opened$")
     public void lotStartPageIsOpened() {
@@ -58,11 +57,23 @@ public class StepDefs {
         lotStartPage.selectReturnDate(returnDate);
     }
 
-    @And("^search results displayed for specified (.*) and (.*) also if round trip is (.*)$")
+    @And("^search results displayed for specified (.*) and (.*) if round trip (.*)$")
     public void searchResultsDisplayedForSpecifiedDepartureAndArrival(String departureCity, String arrivalCity, String isItRoundTrip) throws Throwable {
         boolean isRoundTrip = Boolean.parseBoolean(isItRoundTrip);
         flightSearchResultsPage.verifyNumberOfFoundRoutes(isRoundTrip);
         flightSearchResultsPage.verifyDepartureCity(departureCity, isRoundTrip);
         flightSearchResultsPage.verifyArrivalCity(arrivalCity, isRoundTrip);
+    }
+
+    @And("^search results displayed for specified dates if round trip (.*)$")
+    public void searchResultsDisplayedForSpecifiedDates(String isItRoundTrip) throws Throwable {
+        if (Boolean.parseBoolean(isItRoundTrip)) {
+            flightSearchResultsPage.verifyTripDates(departureDate, returnDate);
+        } else flightSearchResultsPage.verifyTripDates(departureDate);
+    }
+
+    @And("^select ticket type (.*)$")
+    public void selectTicketTypeIsRoundTrip(String isItRoundTrip) throws Throwable {
+        lotStartPage.selectTicketType(Boolean.parseBoolean(isItRoundTrip));
     }
 }

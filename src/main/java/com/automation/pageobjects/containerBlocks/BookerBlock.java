@@ -64,5 +64,9 @@ public class BookerBlock extends ElementsContainer {
 
     }
 
-
+    public void selectTicketType(boolean isReturn) {
+        if (isReturn) {
+            $(btnTicketTypeReturn).click();
+        } else $(btnTicketTypeSingle).click();
+    }
 }
