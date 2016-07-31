@@ -11,7 +11,7 @@ import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class FlightSearchStepDefs {
+public class SearchFlightStepDefs {
     private int departureDate = (new Random()).ints(1, 10).findFirst().getAsInt();
     private int returnDate = departureDate * 2;
     private LotStartPage lotStartPage;
