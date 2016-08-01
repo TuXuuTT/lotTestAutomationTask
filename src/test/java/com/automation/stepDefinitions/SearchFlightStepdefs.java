@@ -3,29 +3,18 @@ package com.automation.stepDefinitions;
 import com.automation.pageobjects.FlightSearchResultsPage;
 import com.automation.pageobjects.LotStartPage;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import java.util.Random;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 
 public class SearchFlightStepDefs {
     private int departureDate = (new Random()).ints(1, 10).findFirst().getAsInt();
     private int returnDate = departureDate * 2;
-    private LotStartPage lotStartPage;
+    private LotStartPage lotStartPage = page(LotStartPage.class);
     private FlightSearchResultsPage flightSearchResultsPage;
-
-//    Note: hook that can be executed before each scenario and do not conflict with global testNG hooks from Runner and Basic runner class. As well "before" for scenario is specified in the Background section of feature
-//    @Before
-//    public void beforeScenario() {
-//    }
-
-    @Given("^Lot start page is opened$")
-    public void lotStartPageIsOpened() {
-        lotStartPage = open(LotStartPage.getAppURL(), LotStartPage.class);
-    }
 
     @And("^click search$")
     public void clickSearch() {

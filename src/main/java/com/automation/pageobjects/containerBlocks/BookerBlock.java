@@ -4,9 +4,6 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsContainer;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 public class BookerBlock extends ElementsContainer {
     private By bookerBoxTextLabel = By.cssSelector(".booker-box>p.text-label");
     private By btnTicketTypeReturn = By.cssSelector("a[data-ticket-type=\"RETURN\"]");
@@ -50,8 +47,8 @@ public class BookerBlock extends ElementsContainer {
     }
 
     private void selectDateFromRightPickerSection(int date, By dateBox) {
-        $(dateBox).click();
-        $$(datePickerRightNumber).get(date - 1).click();
+        getSelf().$(dateBox).click();
+        getSelf().$$(datePickerRightNumber).get(date - 1).click();
         getSelf().$(bookerBoxTextLabel).click();
     }
 
@@ -61,12 +58,11 @@ public class BookerBlock extends ElementsContainer {
 
     public void selectReturnDate(int date) {
         selectDateFromRightPickerSection(date, btnArrivalDateBox);
-
     }
 
     public void selectTicketType(boolean isReturn) {
         if (isReturn) {
-            $(btnTicketTypeReturn).click();
-        } else $(btnTicketTypeSingle).click();
+            getSelf().$(btnTicketTypeReturn).click();
+        } else getSelf().$(btnTicketTypeSingle).click();
     }
 }

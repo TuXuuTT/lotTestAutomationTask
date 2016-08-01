@@ -3,10 +3,9 @@ package com.automation.pageobjects.containerBlocks;
 import com.codeborne.selenide.ElementsContainer;
 import org.openqa.selenium.By;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class HeaderBlock extends ElementsContainer {
@@ -15,6 +14,7 @@ public class HeaderBlock extends ElementsContainer {
 
 
     public void verifyLinks(List links) {
-        assertTrue("Header does not contain all required links", Arrays.asList($$(navigationLink).getTexts()).containsAll(links));
+        List<String> hrefs = getSelf().$$(navigationLink).stream().map(el -> el.getAttribute("href")).collect(Collectors.toList());
+        assertTrue("Header does not contain all required link, but contains: " + hrefs, hrefs.containsAll(links));
     }
 }
