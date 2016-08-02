@@ -8,7 +8,7 @@ import cucumber.api.java.en.When;
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class StartPageLayoutStepDefs {
+public class StartPageLayoutStepdefs {
     private LotStartPage lotStartPage = page(LotStartPage.class);
     private LoginPage loginPage;
 
@@ -58,5 +58,6 @@ public class StartPageLayoutStepDefs {
     public void loginPageDisplayed() throws Throwable {
         loginPage.verifyPageOpened();
     }
+
 
 }
