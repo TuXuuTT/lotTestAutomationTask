@@ -1,5 +1,6 @@
 package com.automation.stepDefinitions;
 
+import com.automation.pageobjects.LoginPage;
 import com.automation.pageobjects.LotStartPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -9,6 +10,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class StartPageLayoutStepDefs {
     private LotStartPage lotStartPage = page(LotStartPage.class);
+    private LoginPage loginPage;
 
     @When("^observing page components by default$")
     public void observingPageComponentsByDefault() throws Throwable {
@@ -46,4 +48,15 @@ public class StartPageLayoutStepDefs {
     public void copyrightBlockIsDisplayed() throws Throwable {
         lotStartPage.verifyCopyrightIsDisplayed();
     }
+
+    @When("^click on Login$")
+    public void clickOnLogin() throws Throwable {
+        loginPage = lotStartPage.navigateToLogin();
+    }
+
+    @Then("^login page displayed$")
+    public void loginPageDisplayed() throws Throwable {
+        loginPage.verifyPageOpened();
+    }
+
 }
