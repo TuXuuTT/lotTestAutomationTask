@@ -86,4 +86,9 @@ public class LotStartPage extends BasicPage {
     public void verifyCopyrightIsDisplayed() {
         $(copyrights).shouldBe(Condition.visible);
     }
+
+    public LoginPage navigateToLogin() {
+        headerBlock.navigateToLogin();
+        return page(LoginPage.class);
+    }
 }
