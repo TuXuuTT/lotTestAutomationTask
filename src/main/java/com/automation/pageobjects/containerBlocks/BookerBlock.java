@@ -1,6 +1,7 @@
 package com.automation.pageobjects.containerBlocks;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsContainer;
 import org.openqa.selenium.By;
 
@@ -11,7 +12,7 @@ public class BookerBlock extends ElementsContainer {
     private By btnDepartureCityBox = By.cssSelector("#booker-box-departure");
     private By btnArrivalCityBox = By.cssSelector("#booker-box-destination");
     private By btnDepartureDateBox = By.cssSelector(".iconimg-departure-date");
-    private By btnArrivalDateBox = By.cssSelector(".iconimg-return-date");
+    private By btnReturnDateBox = By.cssSelector(".iconimg-return-date");
     private By datePickerRightNumber = By.cssSelector(".ui-datepicker-group-last .ui-datepicker-calendar a");
 
     private By numOfAdults = By.cssSelector("#numOfAdults");
@@ -57,12 +58,18 @@ public class BookerBlock extends ElementsContainer {
     }
 
     public void selectReturnDate(int date) {
-        selectDateFromRightPickerSection(date, btnArrivalDateBox);
+        selectDateFromRightPickerSection(date, btnReturnDateBox);
     }
 
     public void selectTicketType(boolean isReturn) {
         if (isReturn) {
             getSelf().$(btnTicketTypeReturn).click();
         } else getSelf().$(btnTicketTypeSingle).click();
+    }
+
+    public void verifyReturnDateVisibility(boolean shouldBeDisplayed) {
+        if (!shouldBeDisplayed) {
+            getSelf().$(btnReturnDateBox).shouldBe(Condition.hidden);
+        } else getSelf().$(btnReturnDateBox).shouldBe(Condition.visible);
     }
 }

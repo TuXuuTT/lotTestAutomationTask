@@ -91,4 +91,17 @@ public class LotStartPage extends BasicPage {
         headerBlock.navigateToLogin();
         return page(LoginPage.class);
     }
+
+    public LotStartPage openLanguagePicker() {
+        headerBlock.clickLanguagePicker();
+        return page(this);
+    }
+
+    public void verifyLanguagePicker() {
+        headerBlock.verifyLanguagePicker();
+    }
+
+    public void verifyReturnDateVisibility(boolean shouldBeDisplayed) {
+        bookerBlock.verifyReturnDateVisibility(shouldBeDisplayed);
+    }
 }

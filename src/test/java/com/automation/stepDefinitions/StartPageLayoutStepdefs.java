@@ -59,5 +59,18 @@ public class StartPageLayoutStepdefs {
         loginPage.verifyPageOpened();
     }
 
+    @When("^click on language$")
+    public void clickOnLanguage() throws Throwable {
+        lotStartPage.openLanguagePicker();
+    }
 
+    @Then("^country picker shown$")
+    public void countryPickerShown() throws Throwable {
+        lotStartPage.verifyLanguagePicker();
+    }
+
+    @Then("^return date should be displayed (.*)")
+    public void returnDateShouldBeDisplayedFalse(String shouldBeDisplayed) throws Throwable {
+        lotStartPage.verifyReturnDateVisibility(Boolean.parseBoolean(shouldBeDisplayed));
+    }
 }

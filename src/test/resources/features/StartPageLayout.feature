@@ -16,15 +16,15 @@ Feature: Start page layout and components functionality
     When click on Login
     Then login page displayed
 
-  @DEV
   Scenario:
     When click on language
     Then country picker shown
 
   Scenario:
     When select ticket type false
-    Then arrival date should be hidden
+    Then return date should be displayed false
 
+  @DEV
   Scenario:
     When default passengers amount set
     Then cant be less than one adult
